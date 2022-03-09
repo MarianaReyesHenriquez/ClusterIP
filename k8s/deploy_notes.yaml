@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: notes
+  name: notes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes
+  template:
+    metadata:
+      labels:
+        app: notes
+    spec:
+      containers:
+        - image: notes:1
+          name: notes
+          env:
+            - name: WEATHER_URL
+              value: http://weather-internal/weather
+          ports:
+            - containerPort: 8080
+      dnsPolicy: Default

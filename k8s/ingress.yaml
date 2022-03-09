@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+    - http:
+        paths:
+        - path: /notes
+          pathType: Prefix
+          backend:
+            service:
+              name: notes
+              port:
+                number: 8080
+        - path: /weather
+          pathType: Prefix
+          backend:
+            service:
+              name: weather
+              port:
+                number: 8080
